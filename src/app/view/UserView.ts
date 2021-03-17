@@ -8,5 +8,9 @@ export default {
             number: user.number,
             userName: user.userName
         }
+    },
+
+    renderMany(user: User[]) {
+        return user.map((user) => this.Render(user));
     }
 }
