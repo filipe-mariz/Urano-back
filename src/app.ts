@@ -7,6 +7,10 @@ import 'express-async-errors'
 import './database/connection';
 import erroHandler from './error/handler';
 
+require('dotenv').config({
+  path: process.env.NODE_ENV == 'test' ? '.env.test' : '.env'
+})
+
 class App {
   public express: express.Application
 
