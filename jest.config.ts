@@ -6,7 +6,7 @@ module.exports = {
   // automock: false,
 
   // Stop running tests after `n` failures
-  // bail: 0,
+  bail: true,
 
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "/private/var/folders/m7/3yjbp5ds77xb33vt96mwlwq00000gn/T/jest_dx",
@@ -129,7 +129,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'node',
+  //testEnvironment: 'node',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -141,7 +141,7 @@ module.exports = {
    testMatch: [
      //"**/tests/**/*.[jt]s?(x)",
      //"**/?(*.)+(spec|test).[tj]s?(x)"
-     "**/tests/**/*.spec.ts?(x)"
+     "**/tests/**/*.test.ts"
    ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped

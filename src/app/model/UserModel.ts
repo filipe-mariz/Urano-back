@@ -26,17 +26,11 @@ export default class User {
 
     @Column('varchar', { length: 50 })
     password: string
-    static create: any;
-    //static create: any;
-
-        
+           
     @BeforeInsert()
     @BeforeUpdate()
     passwordHash(){
       this.password = bcrypt.hashSync(this.password, 8)
     }
        
-    //const passwordCheck = await bcrypt.compare(password, User.passwordHash)
 }
-
-
