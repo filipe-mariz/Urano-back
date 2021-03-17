@@ -1,11 +1,11 @@
-import { request, Request, response, Response } from 'express';
+import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import * as Yup from 'yup'
 import User from '../model/UserModel';
 import UserView from '../view/UserView';
 
 export default {
-    async create(request: Request, Response: Response) {
+    async create(request: Request, response: Response) {
         const {
             name,
             email,
@@ -15,7 +15,7 @@ export default {
         } = request.body;
 
         const userRepository = getRepository(User);
-
+        /*
         const emailExist = userRepository.findOne({ where: { email } })
         if (emailExist) {
             return response.status(401).json({ message: 'E-mail is in use' });
@@ -23,7 +23,7 @@ export default {
         const userNameExist = userRepository.findOne({ where: { userName } });
         if (userNameExist) {
             return response.status(401).json({ message: 'This user name is in use' });
-        }
+        }*/
 
         const data = {
             name,
@@ -50,9 +50,11 @@ export default {
         return response.status(201).json({ user });
     },
 
-    async view(response: Response) {
-        const user = await getRepository(User).find();
-        
+    async view(request: Request, response: Response) {
+        const userRepository = getRepository(User);
+
+        const user = await userRepository.find()
+
         return response.json(UserView.renderMany(user))
         
     },
@@ -67,6 +69,8 @@ export default {
     },
 
     async update(request: Request, response: Response) {
+        /*const { id } = request.params
+        const results = await getRepository(User).delete(request.params.id);
         const {
             name,
             email,
@@ -75,7 +79,7 @@ export default {
         } = request.body;
 
         const userRepository = getRepository(User)
-
+        /*
         const emailExist = userRepository.findOne({ where: { email } })
         if (emailExist) {
             return response.status(401).json({ message: 'E-mail is in use' });
@@ -85,7 +89,18 @@ export default {
             return response.status(401).json({ message: 'This user name is in use' });
         }
 
-        const user = await userRepository.merge(request.body);
+        const user = userRepository.merge(request.body);
+        return response.json(user);*/
+
+        const user = await getRepository(User).findOne(request.params.id)
+
+        if (user) {
+            getRepository(User).merge(user, request.body)
+            const results = await getRepository(User).save(user)
+            return response.json(results)
+        }
+
+        return response.status(404).json({ message: "User not found" })
     },
 
     async delete(request: Request, response: Response) {
