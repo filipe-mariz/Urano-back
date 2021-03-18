@@ -17,7 +17,7 @@ describe('Authenticate', async () => {
             number: "55 (81) 98569-7007",
             userName: "Camila_lira",
             password: "camilotaMaria"
-    })
+        })
     }) 
         
     

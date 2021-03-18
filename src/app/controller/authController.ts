@@ -23,8 +23,8 @@ export default  {
 
         const token = jwt.sign({ id: user.id }, process.env.TOKEN, {expiresIn: '1d'} )
 
-        return response.json({
-            user,
+        return response.status(200).json({            
+            message: "User successfully logged in",
             token
         })
     }

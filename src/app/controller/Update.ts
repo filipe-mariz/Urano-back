@@ -5,11 +5,23 @@ import User from '../model/UserModel';
 
 export default {
     async update(request: Request, response: Response) {
-                
-        const { password } = request.body
+               
+        const userRepository = getRepository(User);
+
+        const { password, email, userName } = request.body
 
         const user = await getRepository(User).findOne(request.params.id) 
         const passwordCheck = await bcrypt.compare(password, user.password);
+       
+        const emailExist = await userRepository.findOne({ where: { email } })
+        if (emailExist) {
+            return response.status(409).json({ message: "This e-mail is in use" })
+        }
+
+        const userNameExist = await userRepository.findOne({ where: { userName } });
+        if (userNameExist) {
+            return response.status(409).json({ message: "This user name is in use" })
+        }
         
 
         if (user && passwordCheck) {

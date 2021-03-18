@@ -15,7 +15,7 @@ export default {
             const results = await getRepository(User).delete(request.params.id);
             return response.status(401).json({ message: 'User deleted'})
         }
-        if (!passwordCheck) {
+        if (!passwordCheck || (password !== user.password)) {
             return response.send(401).json({ message: 'Incorret password'})
         }
 
