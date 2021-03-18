@@ -4,8 +4,10 @@ import cors from 'cors';
 import routes from './routes/Routes';
 import 'dotenv/config';
 import 'express-async-errors'
-import './database/connection';
+import createConnection from './database/connection';
 import erroHandler from './error/handler';
+
+createConnection();
 
 require('dotenv').config({
   path: process.env.NODE_ENV == 'test' ? '.env.test' : '.env'
@@ -13,12 +15,11 @@ require('dotenv').config({
 
 class App {
   public express: express.Application
-
   public constructor () {
     this.express = express()
     this.middlewares();
     this.routes();
-    this.error();
+    this.error();   
     
   }
 
