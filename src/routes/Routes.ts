@@ -10,10 +10,10 @@ const routes = Router();
 
 routes.post('/auth', Auth.login);
 routes.post('/create', Create.create);
-routes.get('/view', authMiddleware, Read.view);
-routes.get('/view/:id', authMiddleware, Read.show);
-routes.put('/update/:id', authMiddleware, Update.update);
+routes.get('/view',  Read.view);
+routes.get('/view/:id',  Read.show);
+routes.put('/update/:id',  Update.update);
 routes.put('/updatepassword/:id', Update.password);
-routes.delete('/delet/:id', authMiddleware, Delete.delete);
+routes.delete('/delet/:id',  Delete.delete);
 
 export default routes

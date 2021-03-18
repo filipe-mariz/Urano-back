@@ -9,7 +9,8 @@ export default {
         const { password } = request.body
 
         const user = await getRepository(User).findOne(request.params.id) 
-        const passwordCheck = await bcrypt.compare(password, user.password)
+        const passwordCheck = await bcrypt.compare(password, user.password);
+        
 
         if (user && passwordCheck) {
             getRepository(User).merge(user, request.body);
