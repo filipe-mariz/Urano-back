@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken';
 import User from '../model/UserModel';
 
 export default  {
@@ -19,5 +20,12 @@ export default  {
         if (!passwordCheck) {
             return response.status(401).json({ message: 'This password is not match'})
         }
+
+        const token = jwt.sign({ id: user.id }, process.env.TOKEN, {expiresIn: '1d'} )
+
+        return response.json({
+            user,
+            token
+        })
     }
 }

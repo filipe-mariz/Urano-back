@@ -8,6 +8,8 @@ export default {
     
         if (results) {
             return response.json({ message: "User deleted"});
+        } else {
+            return response.json({ message: "User not found"});
         }
     }
 
