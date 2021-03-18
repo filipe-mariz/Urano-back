@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import jwt from 'jsonwebtoken';
 import * as Yup from 'yup'
 import User from '../model/UserModel';
 
@@ -47,6 +48,9 @@ export default {
 
         const user = userRepository.create(data);
         await userRepository.save(user);
-        return response.status(201).json({ user });
+        const token = jwt.sign({ id: user.id }, process.env.TOKEN, {expiresIn: '1d'} )
+
+        return response.status(201).json({ user, token });       
+
     }    
 }
