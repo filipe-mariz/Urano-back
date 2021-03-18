@@ -18,7 +18,7 @@ export default class User {
     @Column('varchar', { length: 50 })
     email: string
 
-    @Column('varchar', { length: 20 })
+    @Column('varchar', { length: 25 })
     number: string
 
     @Column('varchar', { length: 20 })
