@@ -2,7 +2,7 @@ import request from 'supertest'
 import app from '../../src/app';
 import createConnection from '../../src/database/connection';
 
-describe('Authenticate', async () => {
+describe('Authenticate', () => {
     beforeAll(async () => {
         const connection = await createConnection()
         await connection.runMigrations()
@@ -18,8 +18,9 @@ describe('Authenticate', async () => {
             userName: "Camila_lira",
             password: "camilotaMaria"
         })
+        expect(response.status).toBe(200);
     }) 
-        
+
     
 })
 

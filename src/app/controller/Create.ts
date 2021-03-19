@@ -6,15 +6,16 @@ import User from '../model/UserModel';
 
 export default {
     async create(request: Request, response: Response) {
-        const userRepository = getRepository(User);
-        
+                
         const {
             name,
             email,
             number,
             userName,
             password
-        } = request.body;        
+        } = request.body;   
+        
+        const userRepository = getRepository(User);
         
         const emailExist = await userRepository.findOne({ where: { email } })
         if (emailExist) {
@@ -50,7 +51,7 @@ export default {
         await userRepository.save(user);
         const token = jwt.sign({ id: user.id }, process.env.TOKEN, {expiresIn: '1d'} )
 
-        return response.status(201).json({ user, token });       
+        return response.status(200).json({ user, token });       
 
     }    
 }

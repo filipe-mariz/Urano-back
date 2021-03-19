@@ -8,8 +8,8 @@
     "start": "node dist/server.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --files --transpile-only --ignore-watch node_modules --ignore tests --no-notify src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-    "test": "set NODE_ENV=test jest",
-    "posttest": "rm ./tests/test.sqlite"
+    "test": "jest"
+    
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
