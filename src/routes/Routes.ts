@@ -13,7 +13,6 @@ routes.post('/create', Create.create);
 routes.get('/view', authMiddleware, Read.view);
 routes.get('/view/:id', authMiddleware, Read.show);
 routes.put('/update/:id', authMiddleware, Update.update);
-routes.put('/updatepassword/:id', authMiddleware, Update.password);
 routes.delete('/delet/:id', authMiddleware, Delete.delete);
 
 export default routes
