@@ -10,22 +10,22 @@ export default  {
         const {
             userName,
             password
-        } = request.body       
+        } = request.body; 
 
-        const user = await repository.findOne({ where: { userName } })
+        const user = await repository.findOne({ where: { userName } });
         if (!user) {
-            return response.status(401).json({ message: 'User not found' })
+            return response.status(401).json({ message: 'User not found' });
         }
-        const passwordCheck = await bcrypt.compare(password, user.password)
+        const passwordCheck = await bcrypt.compare(password, user.password);
         if (!passwordCheck) {
-            return response.status(401).json({ message: 'This password is not match'})
+            return response.status(401).json({ message: 'This password is not match'});
         }
 
-        const token = jwt.sign({ id: user.id }, process.env.TOKEN, {expiresIn: '1d'} )
+        const token = jwt.sign({ id: user.id }, process.env.TOKEN, {expiresIn: '1d'} );
 
         return response.status(200).json({            
             message: "User successfully logged in",
             token
-        })
+        });
     }
 }

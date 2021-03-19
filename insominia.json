@@ -1,25 +1,25 @@
 [
     {
-        "name": "Camila Maria de Souza Lira",
-        "email": "Camila_lira@gmail.com",
+        "name": "Filipe Santos",
+        "email": "filipe_santos@outlook.com",
         "number": "55 (81) 98569-7007",
-        "userName": "Camila_lira",
-        "password": "camilotaMaria"
+        "userName": "filipe_santos",
+        "password": "filipe2020"
       },
 
       {
-        "name": "Camila Maria de Souza Lira",
-        "email": "Camila_lira@gmail.com",
+        "name": "Davi da Silva",
+        "email": "silvaDavi@gmail.com",
         "number": "55 (81) 98569-7007",
-        "userName": "Camila_lira",
-        "password": "camilotaMaria"
+        "userName": "silva_da_silva",
+        "password": "123456"
       },
 
       {
-        "name": "Camila Maria de Souza Lira",
-        "email": "Camila_lira@gmail.com",
+        "name": "Camila Lira",
+        "email": "Camila@gmail.com",
         "number": "55 (81) 98569-7007",
         "userName": "Camila_lira",
-        "password": "camilotaMaria"
+        "password": "987654321"
       }
 ]

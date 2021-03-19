@@ -8,34 +8,23 @@ export default {
                
         const userRepository = getRepository(User);
 
-        const { password, email, userName } = request.body
+        const { email, userName } = request.body
 
         const user = await getRepository(User).findOne(request.params.id) 
-        const passwordCheck = await bcrypt.compare(password, user.password);
-       
+               
         const emailExist = await userRepository.findOne({ where: { email } })
         if (emailExist) {
             return response.status(409).json({ message: "This e-mail is in use" })
         }
-
         const userNameExist = await userRepository.findOne({ where: { userName } });
         if (userNameExist) {
             return response.status(409).json({ message: "This user name is in use" })
         }
+
+        getRepository(User).merge(user, request.body);
+        const results = await getRepository(User).save(user);
+        return response.json(results);
         
-
-        if (user && passwordCheck) {
-            getRepository(User).merge(user, request.body);
-            const results = await getRepository(User).save(user);
-            return response.json(results);
-        }
-
-        if (!user || !passwordCheck) {
-            return response.status(401).json({
-                message: "This operation is not valid",
-                try: "Make sure your username or password is correct"
-            })
-        }
         
     },
 
